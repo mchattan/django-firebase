@@ -17,6 +17,7 @@ confirmed all the Firebase requirements have been met.
 
 ---
 
+- Move Service Worker js into App (currently in project)
 - Add support for mobile (iOS / Android)
 - Add lifecycle to FCMUserToken to invalidate when Firebase respondes with 'Bad Token'
 - Build as a pip installable module and list on pypi
