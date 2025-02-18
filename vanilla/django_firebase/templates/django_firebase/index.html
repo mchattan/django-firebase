@@ -1,0 +1,22 @@
+{% load static %}
+
+<html>
+    <head>
+
+    <!--    FIREBASE     -->
+    <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-messaging-compat.js"></script>
+
+    </head>
+    <body>
+        Hello Firebase!<br>
+        <ul>
+        {% for key, value in firebase_config.items %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+        </ul>
+        {% csrf_token %}
+
+        <script src="{% static 'django_firebase/javascript/django-firebase.js' %}"></script>
+    </body>
+</html>
