@@ -4,9 +4,5 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("firebase-messaging-sw.js", TemplateView.as_view(
-        template_name="django_firebase/firebase-messaging-sw.js",
-        content_type="application/javascript")
-     ),
-    path('django_firebase/', include('django_firebase.urls')),
+    path('', include('django_firebase.urls')),
 ]

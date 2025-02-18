@@ -4,7 +4,7 @@
 // Fetch Firebase config from the backend
 const SW_VERSION = '1.0.13';
 
-fetch("/django_firebase/config/")
+fetch("/firebase/config/")
     .then(response => response.json())
     .then(config => {
         console.log("Fetched Firebase Config:", config, SW_VERSION);
@@ -56,7 +56,7 @@ fetch("/django_firebase/config/")
         }
 
         function sendTokenToServer(token, storedToken) {
-            fetch('/django_firebase/register-web-push/', {
+            fetch('/firebase/register-web-push/', {
                 method: 'POST',
                 body: new URLSearchParams({
                     new_token: token,

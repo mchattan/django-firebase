@@ -4,7 +4,7 @@ const SW_VERSION = '0.0.13';
 
 self.addEventListener("install", (event) => {
     event.waitUntil(
-        fetch("/django_firebase/config/", {credentials: "include"})  // Fetch the config from Django
+        fetch("/firebase/config/", {credentials: "include"})  // Fetch the config from Django
             .then(response => response.json())
             .then(firebaseConfig => {
                 firebase.initializeApp(firebaseConfig); // Initialize Firebase with dynamic config
