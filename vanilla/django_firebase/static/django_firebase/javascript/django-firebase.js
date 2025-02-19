@@ -2,7 +2,7 @@
 //
 
 // Fetch Firebase config from the backend
-const SW_VERSION = '1.0.13';
+const SW_VERSION = '1.0.17';
 
 fetch("/firebase/config/")
     .then(response => response.json())
@@ -71,23 +71,23 @@ fetch("/firebase/config/")
               .catch(error => console.error("Error sending token to server:", error));
         }
 
-        messaging.onMessage((payload) => {
-            console.log("📩 Foreground message received:", payload);
-
-            const notificationTitle = payload.data.title;
-            const notificationOptions = {
-                body: payload.data.body,
-                icon: payload.data.image,
-                data: { url: payload.data?.click_action || config.defaultDest }
-            };
-
-            const notification = new Notification(notificationTitle, notificationOptions);
-
-            notification.onclick = (event) => {
-                event.preventDefault();
-                window.open(notificationOptions.data.url, "_blank");
-            };
-        });
+//        messaging.onMessage((payload) => {
+//            console.log("📩 Foreground message received:", payload);
+//
+//            const notificationTitle = payload.data.title;
+//            const notificationOptions = {
+//                body: payload.data.body,
+//                icon: payload.data.image,
+//                data: { url: payload.data?.click_action || config.defaultDest }
+//            };
+//
+//            const notification = new Notification(notificationTitle, notificationOptions);
+//
+//            notification.onclick = (event) => {
+//                event.preventDefault();
+//                window.open(notificationOptions.data.url, "_blank");
+//            };
+//        });
 
         // Init push request check
         requestPushPermission();

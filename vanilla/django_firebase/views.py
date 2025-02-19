@@ -5,6 +5,7 @@ from .models import FCMUserToken
 from .forms import FCMTokenUpdateForm
 from django.shortcuts import render
 from django.views.generic import TemplateView
+import json
 
 FIREBASE_CONFIG = {
     'apiKey': settings.FCM_API_KEY,
@@ -23,9 +24,11 @@ def firebase_test_page(request):
     }
     return render(request, template_name="django_firebase/index.html", context=context)
 
+
 @login_required
 def firebase_config(request):
     return JsonResponse(FIREBASE_CONFIG)
+
 
 @login_required
 def register_web_push(request):
@@ -47,3 +50,14 @@ def register_web_push(request):
 
     return JsonResponse({"error": form.errors}, status=400)
 
+
+class FirebaseMessagingView(TemplateView):
+    template_name = "django_firebase/django-firebase.js"
+    content_type = "application/javascript"
+    extra_context = FIREBASE_CONFIG
+
+
+class FirebaseMessagingSWView(TemplateView):
+    template_name = "django_firebase/firebase-messaging-sw.js"
+    content_type = "application/javascript"
+    extra_context = FIREBASE_CONFIG

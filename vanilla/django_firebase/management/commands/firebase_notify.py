@@ -34,7 +34,7 @@ class Command(BaseCommand):
             for fcm_user_token in fcm_user_tokens:
                 # print(f'{user=} {fcm_user_token.token=}')
                 # qb.send_test_message(token=fcm_user_token.token)
-                ft.send_web_notification(user=user, title='Standard Test Title', body='Standard message body',
+                ft.send_web_notification(user=user, title='Standard Test Title', body='Standard message body here, http://somewhere.com',
                                          url='https://www.google.com')
 
 

@@ -17,6 +17,7 @@
         </ul>
         {% csrf_token %}
 
-        <script src="{% static 'django_firebase/javascript/django-firebase.js' %}"></script>
+<!--        <script src="{ static 'django_firebase/javascript/django-firebase.js' %}"></script>-->
+            <script src="{% url 'django_firebase:firebase-messaging' %}"></script>
     </body>
 </html>
