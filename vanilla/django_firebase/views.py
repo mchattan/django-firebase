@@ -55,10 +55,10 @@ def register_web_push(request):
 class FirebaseMessagingView(TemplateView):
     template_name = "django_firebase/django-firebase.js"
     content_type = "application/javascript"
-    extra_context = FIREBASE_CONFIG
+    extra_context = {'FIREBASE_CONFIG': FIREBASE_CONFIG}
 
 
 class FirebaseMessagingSWView(TemplateView):
     template_name = "django_firebase/firebase-messaging-sw.js"
     content_type = "application/javascript"
-    extra_context = FIREBASE_CONFIG
+    extra_context = {'FIREBASE_CONFIG': FIREBASE_CONFIG}

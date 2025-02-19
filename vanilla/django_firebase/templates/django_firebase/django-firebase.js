@@ -1,17 +1,14 @@
-const SW_VERSION = '0.0.25';
+// THIS IS A LOCAL COPY THAT SHOULD BE IN THE STATICS DIR BUT IT WASN'T CREATED FOR THIS PROJECTS (S3 ONLY)
+//
+// Fetch Firebase config from the backend
 
-const firebaseConfig = {
-    apiKey: "{{ apiKey }}",
-    authDomain: "{{ authDomain }}",
-    projectId: "{{ projectId }}",
-    storageBucket: "{{ storageBucket }}",
-    messagingSenderId: "{{ messagingSenderId }}",
-    appId: "{{ appId }}"
-};
+const SW_VERSION = '0.0.15';
+
+const firebaseConfig = {{ FIREBASE_CONFIG|safe }};
+console.log("Firebase Foreground Init:", firebaseConfig, SW_VERSION);
 
 // Initialize Firebase with the retrieved config
 firebase.initializeApp(firebaseConfig);
-console.log('Initialize Firebase', SW_VERSION)
 
 // Initialize Firebase Messaging
 const messaging = firebase.messaging();
@@ -34,7 +31,7 @@ function requestPushPermission() {
 }
 
 function getPushToken() {
-    messaging.getToken({ vapidKey: "{{ vapidKey }}" })
+    messaging.getToken({ vapidKey: firebaseConfig.vapidKey })
         .then(function(currentToken) {
             if (currentToken) {
                 console.log("FCM Token:", currentToken);
@@ -72,26 +69,24 @@ function sendTokenToServer(token, storedToken) {
       .catch(error => console.error("Error sending token to server:", error));
 }
 
-//        messaging.onMessage((payload) => {
-//            console.log("📩 Foreground message received:", payload);
-//
-//            const notificationTitle = payload.data.title;
-//            const notificationOptions = {
-//                body: payload.data.body,
-//                icon: payload.data.image,
-//                data: { url: payload.data?.click_action || config.defaultDest }
-//            };
-//
-//            const notification = new Notification(notificationTitle, notificationOptions);
-//
-//            notification.onclick = (event) => {
-//                event.preventDefault();
-//                window.open(notificationOptions.data.url, "_blank");
-//            };
-//        });
+messaging.onMessage((payload) => {
+    console.log("📩 Foreground message received:", payload);
+
+    const notificationTitle = payload.data.title;
+    const notificationOptions = {
+        body: payload.data.body,
+        icon: payload.data.image,
+        data: { url: payload.data?.click_action || config.defaultDest }
+    };
+
+    const notification = new Notification(notificationTitle, notificationOptions);
+
+    notification.onclick = (event) => {
+        event.preventDefault();
+        window.open(notificationOptions.data.url, "_blank");
+    };
+});
 
 // Init push request check
 requestPushPermission();
 
-//    })
-//    .catch(error => console.error("Error fetching Firebase config:", error));
