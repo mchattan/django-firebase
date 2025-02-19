@@ -1,7 +1,7 @@
 importScripts("https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/11.3.0/firebase-messaging-compat.js");
 
-const SW_VERSION = '0.0.22';
+const SW_VERSION = '0.0.25';
 console.log(`🛠️ Service Worker Loading - Version: ${SW_VERSION}`);
 
 let messaging = null;

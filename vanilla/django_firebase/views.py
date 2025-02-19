@@ -5,7 +5,7 @@ from .models import FCMUserToken
 from .forms import FCMTokenUpdateForm
 from django.shortcuts import render
 from django.views.generic import TemplateView
-import json
+
 
 FIREBASE_CONFIG = {
     'apiKey': settings.FCM_API_KEY,
@@ -16,6 +16,7 @@ FIREBASE_CONFIG = {
     'appId': settings.FCM_APP_ID,
     'vapidKey': settings.FCM_VAPID_KEY,
 }
+
 
 @login_required
 def firebase_test_page(request):

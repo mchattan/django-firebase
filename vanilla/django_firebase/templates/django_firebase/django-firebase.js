@@ -1,4 +1,4 @@
-const SW_VERSION = '0.0.22';
+const SW_VERSION = '0.0.25';
 
 const firebaseConfig = {
     apiKey: "{{ apiKey }}",
